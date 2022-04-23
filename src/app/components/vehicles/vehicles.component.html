@@ -1,0 +1,311 @@
+<head>
+    
+      <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
+      
+</head>
+
+
+
+<app-form (myEvent)="here($event)" ></app-form>
+
+<div class="container">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <div *ngFor="let vehicle of filteredVehicles">
+
+      
+      <div class="col" (click)="showVehicleDetails(vehicle)">
+        <div class="card">
+            <img src={{vehicle.image}} class="card-img-top" alt="...">
+          
+            <div class="card-body" >
+              <h3 class="card-title">{{vehicle.title}}</h3>
+              <h5 >PKR {{vehicle.price}}</h5>
+              <div style="display: flex"><span class="material-icons " style="color: rgb(85, 85, 141);">place</span><h6>{{vehicle.location}}</h6></div>
+              
+              <div style="display: flex">
+                <div *ngFor="let i of vehicle.rating">
+                    
+                
+                    <span ><img class="star" src="../../../assets/star.svg" alt=""></span>
+                
+                </div>
+            </div>
+              
+              <p class="position-absolute bottom-0 end-0 greysmall">{{vehicle.dateAdded}}</p>
+            </div>
+          </div>
+
+        
+      </div>
+    
+    </div>
+     
+    </div>
+</div>
+
+
+<div class="container" *ngIf="viewcheck">
+  <div class="row">
+    <div class="col-8">
+      <div class="card">
+
+        <div class="card-body" >
+          
+          <h3 class="card-title">{{detailview.title}}</h3>
+        <div>
+          <button type="submit" class="btn btn-primary position-absolute end-0 top-0 rightmargin" style="margin-top: 10px;" (click)="goback()">Go Back</button>
+        </div>
+          <h5 >PKR {{detailview.price}}</h5>
+          <div style="display: flex"><span class="material-icons " style="color: rgb(85, 85, 141);">place</span><h6>{{detailview.location}}</h6></div>
+          
+          <div style="display: flex">
+            <div *ngFor="let i of detailview.rating">
+                
+            
+                <span ><img class="star" src="../../../assets/star.svg" alt=""></span>
+            
+            </div>
+        </div>
+          
+          <p class="position-absolute bottom-0 end-0 greysmall">{{detailview.dateAdded}}</p>
+        </div>
+        <img src={{detailview.image}} class="card-img-top" alt="...">
+      
+        
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="card">
+      
+        <div class="card-body" >
+          <h3 class="card-title text-center">Seller Information</h3><hr>
+          <div class="row" style="display: flex" id="rowpadding">
+              <div class="col" style="display: flex">
+                <span class="material-icons" style="color: rgb(85, 85, 141);">place</span><h6><b>Location:</b></h6>
+              </div>
+              <div class="col" >
+                <h6>{{detailview.location}}</h6>
+              </div>
+          </div>
+
+          <div class="row" style="display: flex" id="rowpadding">
+            <div class="col" style="display: flex">
+              <span class="material-icons" style="color: rgb(85, 85, 141);">email</span><h6><b>Email:</b></h6>
+            </div>
+            <div class="col" >
+              <h6>Email</h6>            
+            </div>
+          </div>
+
+            <div class="row" style="display: flex" id="rowpadding">
+              <div class="col" style="display: flex">
+                <span class="material-icons" style="color: rgb(85, 85, 141);">phone</span><h6><b>Contact:</b></h6>
+              </div>
+              <div class="col" >
+                <h6>{{detailview.phoneno}}</h6>            
+              </div>
+            </div>
+
+            <div class="row" style="display: flex" id="rowpadding">
+              <div class="col" style="display: flex">
+                <span class="material-icons" style="color: rgb(85, 85, 141);">schedule</span><h6><b>Contact Hours:</b></h6>
+              </div>
+              <div class="col" >
+                <h6>8AM-10PM</h6>            
+              </div>
+            </div>
+          
+            <!-- <div *ngFor="let i of detailview.rating">
+
+                <span ><img class="star" src="../../../assets/star.svg" alt=""></span>
+            
+            </div> -->
+        </div>
+          
+          <p class="position-absolute bottom-0 end-0 greysmall">{{detailview.dateAdded}}</p>
+        </div>
+       
+      </div>
+    </div>
+
+
+    <div class="row" style="margin-top: 20px;">
+      <div class="col-2 text-center">
+          <span ><img class="detailicons " src="../../../assets/calendar.svg" alt=""></span>
+          <p>{{detailview.model}}</p>
+      </div>
+      <div class="col-2 text-center">
+        <span ><img class="detailicons" src="../../../assets/speed.svg" alt=""></span>
+        <p>{{detailview.mileage}}</p>
+      </div>
+      <div class="col-2 text-center" >
+        <span ><img class="detailicons" src="../../../assets/gas.svg" alt=""></span>
+        <p>{{detailview.fuel}}</p>
+      </div>
+      <div class="col-2 text-center">
+      <span ><img class="detailicons" src="../../../assets/gearshift.svg" alt=""></span>
+      <p>{{detailview.transmission}}</p>
+      </div>
+  
+    </div>
+
+
+
+      <div class="row">
+        <div class="col-8">
+          <div class="card">
+            <div class="card-body text-center" >
+
+              <div class="row" id="rowpadding">
+                <div class="col" style="display: flex">
+                  <div class="col" >
+                    <h6><b>RegisteredIn::</b></h6>
+                  </div>
+                  <div class="col">
+                    <h6>{{detailview.model}}</h6>
+                  </div>
+                </div>
+        
+                <div class="col" style="display: flex">
+                  <div class="col" >
+                    <h6><b>Color::</b></h6>
+                  </div>
+                  <div class="col">
+                    <h6>{{detailview.color}}</h6>
+                  </div>
+                </div>
+              </div>
+    
+                <div class="row" id="rowpadding">
+                  <div class="col" style="display: flex">
+                    <div class="col" >
+                      <h6><b>Assembly::</b></h6>
+                    </div>
+                    <div class="col">
+                      <h6>{{detailview.assembly}}</h6>
+                    </div>
+                  </div>
+          
+                  <div class="col" style="display: flex">
+                    <div class="col" >
+                      <h6><b>Engine Capacity::</b></h6>
+                    </div>
+                    <div class="col">
+                      <h6>{{detailview.engine}}</h6>
+                    </div>
+                  </div>
+                </div>
+    
+                <div class="row" id="rowpadding">
+                  <div class="col" style="display: flex">
+                    <div class="col" >
+                      <h6><b>Body Type::</b></h6>
+                    </div>
+                    <div class="col">
+                      <h6>{{detailview.bodytype}}</h6>
+                    </div>
+                  </div>
+          
+                  <div class="col" style="display: flex">
+                    <div class="col" >
+                      <h6><b>Last Updated::</b></h6>
+                    </div>
+                    <div class="col">
+                      <h6>{{detailview.dateAdded}}</h6>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+     
+          
+          
+
+      
+
+
+      
+      
+      
+      
+      
+    
+  
+  
+    <div class="row">
+      <div class="col-8">
+        <div class="card">
+        <div class="card-body" >
+          <h3 class="card-title">Overall Condition</h3>
+          <h6>Exterior and Body</h6>
+          <div class="progress">
+            <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">{{detailview.condition[0]}}%</div>
+          </div>
+
+          <h6>Interior</h6>
+          <div class="progress">
+            <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">{{detailview.condition[1]}}%</div>
+          </div>
+
+          <h6>Engine/Transmission/Clutch</h6>
+          <div class="progress">
+            <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">{{detailview.condition[2]}}%</div>
+          </div>
+
+          <h6>AC/Heater</h6>
+          <div class="progress">
+            <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">{{detailview.condition[3]}}%</div>
+          </div>
+
+          <h6>Suspension/Steering</h6>
+          <div class="progress">
+            <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">{{detailview.condition[4]}}%</div>
+          </div>
+        </div>
+        </div>
+
+
+        <div class="card">
+          <div class="card-body" >
+            <h3 class="card-title">Car Features</h3>
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+              <div *ngFor="let feature of detailview.features">
+                <div class="col">
+                  <li>{{feature}}</li>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+
+          <div class="card-body" >
+          <h3 class="card-title">Seller's Comment</h3>
+          <h6>{{detailview.comment}}</h6>
+              
+            </div>
+        </div>
+
+
+        
+            
+          
+
+      </div>
+    </div>
+
+    
+  </div>
+  
+
+  
+
+
+
+
+
